@@ -20,15 +20,14 @@ afterEach(() => {
   container = null;
 });
 
-it('should return an empty div if there is no employees prop passed', () => {
+it('should not render if there is no employees prop passed.', () => {
   act(() => {
     ReactDOM.render(<EmployeeTree/>, container);
   });
-  const div = container.querySelector('div');
-  expect(div.childElementCount).toBe(0);
+  expect(container.childElementCount).toBe(0);
 });
 
-it('should render one .Employee div.', () => {
+it('should render one .Employee div if employees prop has one employee.', () => {
   const employees = testEmployees.slice(0, 1);
   act(() => {
     ReactDOM.render(<EmployeeTree employees={employees}/>, container);
@@ -37,7 +36,7 @@ it('should render one .Employee div.', () => {
   expect(employeesDiv.length).toBe(1);
 });
 
-it('should render two .Employee div.', () => {
+it('should render two .Employee div if employees prop has two employees.', () => {
   const employees = testEmployees.slice(0, 2);
   act(() => {
     ReactDOM.render(<EmployeeTree employees={employees}/>, container);
@@ -46,7 +45,7 @@ it('should render two .Employee div.', () => {
   expect(employeesDiv.length).toBe(2);
 });
 
-it('should render three .Employee div.', () => {
+it('should render three .Employee div if employees prop has three employees.', () => {
   act(() => {
     ReactDOM.render(<EmployeeTree employees={testEmployees}/>, container);
   });

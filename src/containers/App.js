@@ -1,44 +1,28 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/App.css';
+import NavBar from '../components/NavBar';
 import EmployeeTree from '../components/EmployeeTree';
 import { getManager } from '../utils/Api';
 
-class App extends Component {
-  constructor (props) {
-    super(props);
-    this.getManager = getManager;
-    this.setEmployees = this.setEmployees.bind(this);
-    this.state = {
-      employees: []
-    };
-  }
+function App() {
+  const [employees, setEmployees] = useState(null);
 
-  setEmployees(employees) {
-    const newState = {...this.state};
-    Object.assign(newState, {employees: [
-      ...newState.employees,
-      ...employees
-    ]});
-    this.setState(newState);
-  }
-
-  componentDidMount() {
-    this.getManager(0)
-      .then((employees) => {
-        this.setEmployees(employees);
-      })
+  useEffect(() => {
+    getManager(0)
+      .then(setEmployees)
       .catch((error) => {
         console.error(error);
       });
-  }
+  }, []);
 
-  render() {
-    return (
-      <div className="App">
-        <EmployeeTree employees={this.state.employees}/>
+  return (
+    <div className="App">
+      <NavBar/>
+      <div className="Container">
+        <EmployeeTree employees={employees}/>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default App;

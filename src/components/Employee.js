@@ -1,47 +1,41 @@
-import React, { Component } from 'react';
+import React, { useState, useCallback } from 'react';
 import EmployeeTree from './EmployeeTree';
 import { getManagerEmployees } from '../utils/Api';
 import '../css/Employee.css';
 
-class Employee extends Component {
-  constructor (props) {
-    super(props);
-    this.employee = this.props.employee;
-    this.getManagerEmployees = getManagerEmployees;
-    this.setEmployees = this.setEmployees.bind(this);
-    this.expand = this.expand.bind(this);
-    this.state = {};
-  }
+function Employee({ employee }) {
+  const [employees, setEmployees] = useState(null);
 
-  setEmployees(employees) {
-    this.setState((state) => {
-      return {employees};
-    })
-  }
-
-  async expand() {
-    try {
-      const employees = await this.getManagerEmployees(this.employee);
-      this.setEmployees(employees);
-    } catch (error) {
-      console.error(error);
+  const expand = useCallback(() => {
+    if (employees === null) {
+      getManagerEmployees(employee)
+      .then(setEmployees)
+      .catch((error) => {
+        console.error(error);
+      });
     }
+  }, [employee, setEmployees, employees]);
+
+  if (!employee) {
+    return null;
   }
 
-  render() {
-    return (
-      this.employee &&
-      <div className="Employee">
-        <div className="EmployeeName">
-          {this.employee.first} {this.employee.last}
-        </div>
-        { ( !this.state.employees &&
-            <button onClick={this.expand}>Expand</button> ) || 
-          ( !!this.state.employees.length &&
-            <EmployeeTree employees={this.state.employees}/> ) }
+  return (
+    <div className="Employee">
+      <div className="EmployeeName" onClick={expand}>
+        {employee.first} {employee.last}
       </div>
-    ) || <div/>;
-  }
+      { employees &&
+        employees.length > 0 &&
+        <EmployeeTree employees={employees}/>
+      }
+
+      { employees &&
+        employees.length === 0 &&
+        <span>No employees</span>
+      }
+    </div>
+  );
 }
 
 export default Employee;  

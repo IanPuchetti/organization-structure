@@ -10,7 +10,7 @@ And to **run** the app
 
     npm start
   
-then you can access`localhost:3000` from your browser.
+then you can access `localhost:3000` from your browser.
 
 ### Tests
 To run the app tests

@@ -5,30 +5,37 @@
 
 .Employee {
   animation: Fade 1s;
-  color: #555;
+  color: #4f76a3;
   margin: 15px;
   padding-bottom: 5px;
   position: relative;
 }
 
-.Employee button {
+.Employee span {
   position: absolute;
   opacity: 0;
+  width:100px;
   transition: all 1s;
-  left: calc(50% - 30px);
+  left:calc(50% - px);
+  font-size:12px;
   border: 0px;
   background: none;
-  color: #999;
+  color: #7599c2;
   cursor: pointer;
-  outline: none;
 }
 
-.Employee button:hover {
-  color:#555;
+.EmployeeName {
+  transition: all .5s;
+  padding-bottom:4px;
+  text-align: left;
 }
 
-.Employee button:hover,
-.EmployeeName:hover + button {
+.EmployeeName:hover {
+  color: #7599c2;
+}
+
+.Employee span:hover,
+.EmployeeName:hover + span {
   opacity: 1;
 }
 

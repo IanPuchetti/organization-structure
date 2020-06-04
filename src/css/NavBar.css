@@ -1,0 +1,24 @@
+.NavBar {
+  position:relative;
+  flex-grow: 0;
+  height: 4rem;
+  min-height: 4rem;
+  height:70px;
+  background: #fff;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.NavBar .Title {
+  font-weight: 700;
+  color: #4f76a3;
+  margin-left:20px;
+}
+
+.NavBar .Instruction {
+  font-weight: 100;
+  font-size:12px;
+  color: #7599c2;
+  margin:25px;
+}

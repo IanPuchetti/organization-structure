@@ -1,0 +1,42 @@
+@keyframes Fade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.Employee {
+  animation: Fade 1s;
+  color: #555;
+  margin: 15px;
+  padding-bottom: 5px;
+  position: relative;
+}
+
+.EmployeeExpand button {
+  border: 0px;
+  background: none;
+  color: #999;
+  cursor: pointer;
+  transition: all .5s;
+  outline: none;
+}
+
+.EmployeeExpand button:hover {
+  color:#555;
+}
+
+.EmployeeExpand {
+  position: absolute;
+  opacity: 0;
+  transition: all 1s;
+  left: calc(50% - 30px);
+  font-size: 7px;
+}
+
+.EmployeeExpand:hover,
+.EmployeeName:hover + .EmployeeExpand {
+  opacity: 1;
+}
+
+.EmployeeName {
+  cursor: pointer;
+}

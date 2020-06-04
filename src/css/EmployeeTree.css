@@ -1,0 +1,21 @@
+.EmployeeTree{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  background:rgba(100, 100, 100, .05);
+  margin:5px;
+  position:relative;
+  align-content: center;
+}
+
+.EmployeeTree::before{
+  content:"";
+  position:absolute;
+  top:-8px;
+  left:calc(50% - 4px);
+  width: 0;
+  height: 0;
+  border-color: transparent transparent rgba(100, 100, 100, .05) transparent;
+  border-style: solid;
+  border-width: 0px 8px 8px 8px;
+}

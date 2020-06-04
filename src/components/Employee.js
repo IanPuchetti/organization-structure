@@ -20,8 +20,12 @@ class Employee extends Component {
   }
 
   async expand() {
-    const employees = await this.getManagerEmployees(this.employee);
-    this.setEmployees(employees);
+    try {
+      const employees = await this.getManagerEmployees(this.employee);
+      this.setEmployees(employees);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   render() {
@@ -31,17 +35,13 @@ class Employee extends Component {
         <div className="EmployeeName">
           {this.employee.first} {this.employee.last}
         </div>
-        {(!this.state.employees &&
-          <div className="EmployeeExpand">
-            <button onClick={this.expand}>Expand</button>
-          </div>) || 
+        { ( !this.state.employees &&
+            <button onClick={this.expand}>Expand</button> ) || 
           ( !!this.state.employees.length &&
-            <EmployeeTree employees={this.state.employees}/>
-          )
-        }
+            <EmployeeTree employees={this.state.employees}/> ) }
       </div>
     ) || <div/>;
   }
 }
-  
+
 export default Employee;  

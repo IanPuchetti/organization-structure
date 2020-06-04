@@ -11,29 +11,24 @@
   position: relative;
 }
 
-.EmployeeExpand button {
-  border: 0px;
-  background: none;
-  color: #999;
-  cursor: pointer;
-  transition: all .5s;
-  outline: none;
-}
-
-.EmployeeExpand button:hover {
-  color:#555;
-}
-
-.EmployeeExpand {
+.Employee button {
   position: absolute;
   opacity: 0;
   transition: all 1s;
   left: calc(50% - 30px);
-  font-size: 7px;
+  border: 0px;
+  background: none;
+  color: #999;
+  cursor: pointer;
+  outline: none;
 }
 
-.EmployeeExpand:hover,
-.EmployeeName:hover + .EmployeeExpand {
+.Employee button:hover {
+  color:#555;
+}
+
+.Employee button:hover,
+.EmployeeName:hover + button {
   opacity: 1;
 }
 

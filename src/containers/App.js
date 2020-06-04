@@ -18,7 +18,7 @@ class App extends Component {
     Object.assign(newState, {employees: [
       ...newState.employees,
       ...employees
-    ]})
+    ]});
     this.setState(newState);
   }
 
@@ -26,7 +26,10 @@ class App extends Component {
     this.getManager(0)
       .then((employees) => {
         this.setEmployees(employees);
-      });    
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   render() {

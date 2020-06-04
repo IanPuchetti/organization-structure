@@ -5,8 +5,9 @@ const apiUrl = {
 function getManager(managerId) {
     const query = `${apiUrl.employees}?manager=${managerId}`;
     return fetch(query)
-        .then(function (response) {
-            return response.json();
+        .then((response) => response.json())
+        .catch((error) => {
+            throw new Error(error);
         });
 }
 
@@ -14,8 +15,9 @@ function getManagerEmployees(manager) {
     const managerId = manager.id;
     const query = `${apiUrl.employees}?manager=${managerId}`;
     return fetch(query)
-        .then(function (response) {
-            return response.json();
+        .then((response) => response.json())
+        .catch((error) => {
+            throw new Error(error);
         });
 }
 
